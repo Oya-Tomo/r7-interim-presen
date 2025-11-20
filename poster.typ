@@ -153,7 +153,7 @@
       "where" space.quad delta_t = r_t + gamma V( s_(t+1) ) - V( s_t )
     $,
     $
-      r_(t)(θ) = frac( pi_(θ)( a_t | s_t ), pi_(θ_"old")( a_t | s_t ))
+      r_(t)(θ) = frac(pi_(θ)( a_t | s_t ), pi_(θ_"old")( a_t | s_t ))
     $
   )
   $
