@@ -87,7 +87,7 @@
 ]
 
 
-#let impl_section = section_box("実装", 100%, 40%)[
+#let impl_section = section_box("実装", 100%, 40.5%)[
   検証のために，モデルおよび強化学習のアルゴリズムとシミュレーション環境を実装した．
 
   *実装に使用したライブラリ*
@@ -117,7 +117,7 @@
 
 ]
 
-#let comp = section_box("比較・考察", 100%, 21%)[
+#let comp = section_box("比較・考察", 100%, 21.5%)[
   Table 1 に示す3つの手法を実装し，歩行性能の比較を行った．
 
   #figure(
@@ -140,15 +140,24 @@
   一方でSLRは，過去の観測情報を時系列的に一貫性のある潜在表現に変換して，効率的に利用することで路面状況を推測することができ，不整地歩行が可能になったと考えられる．
 ]
 
-#let ppo_section = section_box("強化学習手法: Proximal Policy Optimization", 100%, 17.5%)[
+#let ppo_section = section_box("強化学習手法: Proximal Policy Optimization", 100%, 18.5%)[
   　Proximal Policy Optimization (以下，PPO) はActor-Critic法をベースとする強化学習であり，ロボット制御に限らず様々な分野の強化学習タスクで高い性能を発揮している．
   PPOは，方策関数 (Policy) の勾配を安定的に更新することを目的としており，クリッピング手法を用いることで急激な方策更新による性能の劣化を防いでいる．
   PPOの最大化目的は以下の式で表される．(出典: @schulman2017proximalpolicyoptimizationalgorithms)
 
+  #grid(
+    columns: (65%, 34%),
+    gutter: -30pt,
+    $
+      hat(A)_t = delta_t + ( gamma lambda ) delta_(t+1) + ... + ( gamma lambda )^(T-t+1) delta_(T-1)\
+      "where" space.quad delta_t = r_t + gamma V( s_(t+1) ) - V( s_t )
+    $,
+    $
+      r_(t)(θ) = frac( pi_(θ)( a_t | s_t ), pi_(θ_"old")( a_t | s_t ))
+    $
+  )
   $
-    hat(A)_t = delta_t + ( gamma lambda ) delta_(t+1) + ... + ( gamma lambda )^(T-t+1) delta_(T-1)\
-    "where" space.quad delta_t = r_t + gamma V( s_(t+1) ) - V( s_t )\
-    L^"CLIP" (θ) = hat(EE)_t [ min( r_t(θ) hat(A)_t, "clip"( r_t(θ), 1 - ϵ, 1 + ϵ ) hat(A)_t ) ]
+    L^"CLIP" (θ) = hat(EE)_t [ min( r_(t)(θ) hat(A)_t, "clip"( r_(t)(θ), 1 - ϵ, 1 + ϵ ) hat(A)_t ) ]
   $
 ]
 
